@@ -37,4 +37,20 @@
   &.size-xl {
     font-size: 48px;
   }
+
+  &.dark {
+    color: rgba(0, 0, 0, 0.54);
+
+    &.inactive {
+      color: rgba(0, 0, 0, 0.26);
+    }
+  }
+
+  &.light {
+    color: rgba(255, 255, 255, 1);
+
+    &.inactive {
+      color: rgba(255, 255, 255, 0.3);
+    }
+  }
 }

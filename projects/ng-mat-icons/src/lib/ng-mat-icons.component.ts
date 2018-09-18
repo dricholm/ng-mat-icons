@@ -28,7 +28,7 @@ export class NgMatIconsComponent {
       return;
     }
 
-    console.warn(`Ng Material Icons: Invalid name given: ${name}`);
+    console.warn(`Ng Material Icons: Invalid name: ${name}`);
   }
 
   @Input()
@@ -37,7 +37,6 @@ export class NgMatIconsComponent {
   @Input()
   set size(size: string) {
     if (!size) {
-      this.cssSize = 'size-md';
       return;
     }
 
@@ -68,8 +67,48 @@ export class NgMatIconsComponent {
         break;
 
       default:
-        console.warn(`Ng Material Icons: Invalid size given: ${size}`);
+        console.warn(`Ng Material Icons: Invalid size: ${size}`);
         this.cssSize = 'size-md';
+        break;
+    }
+  }
+
+  @Input()
+  set color(color: string) {
+    if (!color) {
+      return;
+    }
+
+    switch (color) {
+      case 'dark':
+        this.cssColor = 'dark';
+        break;
+
+      case 'light':
+        this.cssColor = 'light';
+        break;
+
+      default:
+        console.warn(`Ng Material Icons: Invalid color: ${color}`);
+        break;
+    }
+  }
+
+  @Input()
+  set inactive(inactive: boolean) {
+    if (inactive == null) {
+      return;
+    }
+
+    switch (this.cssColor) {
+      case 'dark':
+      case 'light':
+        this.cssInactive = inactive;
+        break;
+
+      default:
+        console.warn('Ng Material Icons: Color must be set for inactive');
+        this.cssInactive = false;
         break;
     }
   }
@@ -84,11 +123,43 @@ export class NgMatIconsComponent {
     return this.label ? 'false' : 'true';
   }
 
-  @HostBinding('class')
-  get classes(): Array<string> {
-    return [this.cssSize];
+  @HostBinding('class.size-sm')
+  get sizeSmall(): boolean {
+    return this.cssSize === 'size-sm';
+  }
+
+  @HostBinding('class.size-md')
+  get sizeMedium(): boolean {
+    return this.cssSize === 'size-md';
+  }
+
+  @HostBinding('class.size-lg')
+  get sizeLarge(): boolean {
+    return this.cssSize === 'size-lg';
+  }
+
+  @HostBinding('class.size-xl')
+  get sizeExtra(): boolean {
+    return this.cssSize === 'size-xl';
+  }
+
+  @HostBinding('class.dark')
+  get colorDark(): boolean {
+    return this.cssColor === 'dark';
+  }
+
+  @HostBinding('class.light')
+  get colorLight(): boolean {
+    return this.cssColor === 'light';
+  }
+
+  @HostBinding('class.inactive')
+  get isInactive(): boolean {
+    return this.cssInactive;
   }
 
   content: string;
   cssSize = 'size-md';
+  cssColor = '';
+  cssInactive = false;
 }

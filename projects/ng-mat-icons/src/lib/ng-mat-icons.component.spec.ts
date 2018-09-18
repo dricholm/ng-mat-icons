@@ -4,11 +4,13 @@ import { Component } from '@angular/core';
 import { NgMatIconsComponent } from './ng-mat-icons.component';
 
 @Component({
-  template: `<nmi-icon [name]="name" [size]="size"></nmi-icon>`,
+  template: `<nmi-icon [name]="name" [size]="size" [color]="color" [inactive]="inactive"></nmi-icon>`,
 })
 export class TestHostComponent {
   name: string;
   size: string;
+  color: string;
+  inactive: boolean;
 }
 
 describe('NgMatIconsComponent', () => {
@@ -51,13 +53,13 @@ describe('NgMatIconsComponent', () => {
       expect(fixture.nativeElement.textContent).toBe('face');
     });
 
-    it('should warn when invalid name is given', () => {
+    it('should warn when invalid name is set', () => {
       component.name = 'not existing name';
       fixture.detectChanges();
 
       expect(console.warn).toHaveBeenCalledTimes(1);
       expect(console.warn).toHaveBeenCalledWith(
-        'Ng Material Icons: Invalid name given: not existing name'
+        'Ng Material Icons: Invalid name: not existing name'
       );
       expect(fixture.nativeElement.textContent).toBe('');
       (console.warn as jasmine.Spy).calls.reset();
@@ -220,7 +222,7 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-xl')).toBe(true);
     });
 
-    it('should warn when invalid size is given', () => {
+    it('should warn when invalid size is set', () => {
       component.name = 'face';
       component.size = '30';
       fixture.detectChanges();
@@ -233,7 +235,7 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-xl')).toBe(false);
       expect(console.warn).toHaveBeenCalledTimes(1);
       expect(console.warn).toHaveBeenCalledWith(
-        'Ng Material Icons: Invalid size given: 30'
+        'Ng Material Icons: Invalid size: 30'
       );
       (console.warn as jasmine.Spy).calls.reset();
     });
@@ -249,6 +251,90 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-md')).toBe(false);
       expect(icon.classList.contains('size-lg')).toBe(false);
       expect(icon.classList.contains('size-xl')).toBe(false);
+    });
+
+    it('should set color to dark', () => {
+      component.name = 'face';
+      component.color = 'dark';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement;
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('dark')).toBe(true);
+      expect(icon.classList.contains('light')).toBe(false);
+      expect(icon.classList.contains('inactive')).toBe(false);
+    });
+
+    it('should set color to dark and inactive', () => {
+      component.name = 'face';
+      component.color = 'dark';
+      component.inactive = true;
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement;
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('dark')).toBe(true);
+      expect(icon.classList.contains('light')).toBe(false);
+      expect(icon.classList.contains('inactive')).toBe(true);
+    });
+
+    it('should set color to light', () => {
+      component.name = 'face';
+      component.color = 'light';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement;
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('dark')).toBe(false);
+      expect(icon.classList.contains('light')).toBe(true);
+      expect(icon.classList.contains('inactive')).toBe(false);
+    });
+
+    it('should set color to dark and inactive', () => {
+      component.name = 'face';
+      component.color = 'light';
+      component.inactive = true;
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement;
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('dark')).toBe(false);
+      expect(icon.classList.contains('light')).toBe(true);
+      expect(icon.classList.contains('inactive')).toBe(true);
+    });
+
+    it('should warn if invalid color', () => {
+      component.name = 'face';
+      component.color = 'blue';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement;
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('dark')).toBe(false);
+      expect(icon.classList.contains('light')).toBe(false);
+      expect(icon.classList.contains('inactive')).toBe(false);
+      expect(console.warn).toHaveBeenCalledTimes(1);
+      expect(console.warn).toHaveBeenCalledWith(
+        'Ng Material Icons: Invalid color: blue'
+      );
+      (console.warn as jasmine.Spy).calls.reset();
+    });
+
+    it('should warn if inactive is set without color', () => {
+      component.name = 'face';
+      component.inactive = true;
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement;
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('dark')).toBe(false);
+      expect(icon.classList.contains('light')).toBe(false);
+      expect(icon.classList.contains('inactive')).toBe(false);
+      expect(console.warn).toHaveBeenCalledTimes(1);
+      expect(console.warn).toHaveBeenCalledWith(
+        'Ng Material Icons: Color must be set for inactive'
+      );
+      (console.warn as jasmine.Spy).calls.reset();
     });
   });
 
@@ -291,6 +377,39 @@ describe('NgMatIconsComponent', () => {
       fixture.detectChanges();
       expect(icon.classList.contains('size-sm')).toBe(false);
       expect(icon.classList.contains('size-lg')).toBe(true);
+    });
+
+    it('should update icon color', () => {
+      component.name = 'fullscreen';
+      component.color = 'dark';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector('nmi-icon');
+      expect(icon.classList.contains('dark')).toBe(true);
+      expect(icon.classList.contains('light')).toBe(false);
+
+      component.color = 'light';
+      fixture.detectChanges();
+      expect(icon.classList.contains('dark')).toBe(false);
+      expect(icon.classList.contains('light')).toBe(true);
+    });
+
+    it('should update icon inactivity', () => {
+      component.name = 'fullscreen';
+      component.color = 'dark';
+      component.inactive = false;
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector('nmi-icon');
+      expect(icon.classList.contains('dark')).toBe(true);
+      expect(icon.classList.contains('light')).toBe(false);
+      expect(icon.classList.contains('inactive')).toBe(false);
+
+      component.inactive = true;
+      fixture.detectChanges();
+      expect(icon.classList.contains('dark')).toBe(true);
+      expect(icon.classList.contains('light')).toBe(false);
+      expect(icon.classList.contains('inactive')).toBe(true);
     });
   });
 });
