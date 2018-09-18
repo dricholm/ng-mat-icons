@@ -6,7 +6,7 @@ import { icons } from './material-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nmi-icon',
   styleUrls: ['./ng-mat-icons.component.scss'],
-  template: `<i class="material-icons">{{ content }}</i>`,
+  template: `<i class="material-icons" [attr.aria-label]="label" [attr.aria-hidden]="!label">{{ content }}</i>`,
 })
 export class NgMatIconsComponent {
   @Input()
@@ -25,6 +25,9 @@ export class NgMatIconsComponent {
 
     console.warn(`Ng Material Icons: Invalid name given: ${name}`);
   }
+
+  @Input()
+  label: string;
 
   content: string;
 }

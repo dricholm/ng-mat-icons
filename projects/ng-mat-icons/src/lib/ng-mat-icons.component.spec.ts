@@ -89,9 +89,33 @@ describe('NgMatIconsComponent', () => {
         fixture.nativeElement.querySelector('i.material-icons').textContent
       ).toBe('&#xe855;');
     });
+
+    it('should set aria-hidden to true when no label is given', () => {
+      component.name = 'face';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.attributes.getNamedItem('aria-hidden').value).toBe('true');
+    });
+
+    it('should set aria-label when label is set and aria-hidden should not be set', () => {
+      component.name = 'face';
+      component.label = 'Person';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.attributes.getNamedItem('aria-label').value).toBe('Person');
+      expect(icon.attributes.getNamedItem('aria-hidden').value).toBe('false');
+    });
   });
 
-  // Need to test inside host component
+  // Need to test inside host component for ChangeDetection.OnPush
   // https://github.com/angular/angular/issues/12313
   describe('inside HostComponent', () => {
     let component: TestHostComponent;
