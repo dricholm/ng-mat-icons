@@ -4,10 +4,11 @@ import { Component } from '@angular/core';
 import { NgMatIconsComponent } from './ng-mat-icons.component';
 
 @Component({
-  template: `<nmi-icon [name]="name"></nmi-icon>`,
+  template: `<nmi-icon [name]="name" [size]="size"></nmi-icon>`,
 })
 export class TestHostComponent {
   name: string;
+  size: string;
 }
 
 describe('NgMatIconsComponent', () => {
@@ -22,8 +23,13 @@ describe('NgMatIconsComponent', () => {
     let fixture: ComponentFixture<NgMatIconsComponent>;
 
     beforeEach(() => {
+      spyOn(console, 'warn').and.callFake(() => {});
       fixture = TestBed.createComponent(NgMatIconsComponent);
       component = fixture.componentInstance;
+    });
+
+    afterEach(() => {
+      expect(console.warn).toHaveBeenCalledTimes(0);
     });
 
     it('should create', () => {
@@ -50,7 +56,6 @@ describe('NgMatIconsComponent', () => {
     });
 
     it('should warn when invalid name is given', () => {
-      spyOn(console, 'warn').and.callFake(() => {});
       component.name = 'not existing name';
       fixture.detectChanges();
 
@@ -61,6 +66,7 @@ describe('NgMatIconsComponent', () => {
       expect(
         fixture.nativeElement.querySelector('i.material-icons').textContent
       ).toBe('');
+      (console.warn as jasmine.Spy).calls.reset();
     });
 
     it('should display icon when numeric character reference is given', () => {
@@ -113,6 +119,146 @@ describe('NgMatIconsComponent', () => {
       expect(icon.attributes.getNamedItem('aria-label').value).toBe('Person');
       expect(icon.attributes.getNamedItem('aria-hidden').value).toBe('false');
     });
+
+    it('should size class from size input (sm)', () => {
+      component.name = 'face';
+      component.size = 'sm';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('size-sm')).toBe(true);
+      expect(icon.classList.contains('size-md')).toBe(false);
+      expect(icon.classList.contains('size-lg')).toBe(false);
+      expect(icon.classList.contains('size-xl')).toBe(false);
+    });
+
+    it('should size class from size input (18)', () => {
+      component.name = 'face';
+      component.size = '18';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('size-sm')).toBe(true);
+      expect(icon.classList.contains('size-md')).toBe(false);
+      expect(icon.classList.contains('size-lg')).toBe(false);
+      expect(icon.classList.contains('size-xl')).toBe(false);
+    });
+
+    it('should size class from size input (md)', () => {
+      component.name = 'face';
+      component.size = 'md';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('size-sm')).toBe(false);
+      expect(icon.classList.contains('size-md')).toBe(true);
+      expect(icon.classList.contains('size-lg')).toBe(false);
+      expect(icon.classList.contains('size-xl')).toBe(false);
+    });
+
+    it('should size class from size input (24)', () => {
+      component.name = 'face';
+      component.size = '24';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('size-sm')).toBe(false);
+      expect(icon.classList.contains('size-md')).toBe(true);
+      expect(icon.classList.contains('size-lg')).toBe(false);
+      expect(icon.classList.contains('size-xl')).toBe(false);
+    });
+
+    it('should size class from size input (lg)', () => {
+      component.name = 'face';
+      component.size = 'lg';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('size-sm')).toBe(false);
+      expect(icon.classList.contains('size-md')).toBe(false);
+      expect(icon.classList.contains('size-lg')).toBe(true);
+      expect(icon.classList.contains('size-xl')).toBe(false);
+    });
+
+    it('should size class from size input (36)', () => {
+      component.name = 'face';
+      component.size = '36';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('size-sm')).toBe(false);
+      expect(icon.classList.contains('size-md')).toBe(false);
+      expect(icon.classList.contains('size-lg')).toBe(true);
+      expect(icon.classList.contains('size-xl')).toBe(false);
+    });
+
+    it('should size class from size input (xl)', () => {
+      component.name = 'face';
+      component.size = 'xl';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('size-sm')).toBe(false);
+      expect(icon.classList.contains('size-md')).toBe(false);
+      expect(icon.classList.contains('size-lg')).toBe(false);
+      expect(icon.classList.contains('size-xl')).toBe(true);
+    });
+
+    it('should size class from size input (48)', () => {
+      component.name = 'face';
+      component.size = '48';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('size-sm')).toBe(false);
+      expect(icon.classList.contains('size-md')).toBe(false);
+      expect(icon.classList.contains('size-lg')).toBe(false);
+      expect(icon.classList.contains('size-xl')).toBe(true);
+    });
+
+    it('should warn when invalid size is given', () => {
+      component.name = 'face';
+      component.size = '30';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.textContent).toBe('face');
+      expect(icon.classList.contains('size-sm')).toBe(false);
+      expect(icon.classList.contains('size-md')).toBe(false);
+      expect(icon.classList.contains('size-lg')).toBe(false);
+      expect(icon.classList.contains('size-xl')).toBe(false);
+      expect(console.warn).toHaveBeenCalledTimes(1);
+      expect(console.warn).toHaveBeenCalledWith(
+        'Ng Material Icons: Invalid size given: 30'
+      );
+      (console.warn as jasmine.Spy).calls.reset();
+    });
   });
 
   // Need to test inside host component for ChangeDetection.OnPush
@@ -122,8 +268,13 @@ describe('NgMatIconsComponent', () => {
     let fixture: ComponentFixture<TestHostComponent>;
 
     beforeEach(() => {
+      spyOn(console, 'warn');
       fixture = TestBed.createComponent(TestHostComponent);
       component = fixture.componentInstance;
+    });
+
+    afterEach(() => {
+      expect(console.warn).toHaveBeenCalledTimes(0);
     });
 
     it('should update icon when name is updated', () => {
@@ -138,6 +289,23 @@ describe('NgMatIconsComponent', () => {
       expect(
         fixture.nativeElement.querySelector('i.material-icons').textContent
       ).toBe('&#xe156;');
+    });
+
+    it('should update icon size', () => {
+      component.name = 'fullscreen';
+      component.size = 'md';
+      fixture.detectChanges();
+
+      const icon: HTMLElement = fixture.nativeElement.querySelector(
+        'i.material-icons'
+      );
+      expect(icon.classList.contains('size-md')).toBe(true);
+      expect(icon.classList.contains('size-lg')).toBe(false);
+
+      component.size = 'lg';
+      fixture.detectChanges();
+      expect(icon.classList.contains('size-md')).toBe(false);
+      expect(icon.classList.contains('size-lg')).toBe(true);
     });
   });
 });

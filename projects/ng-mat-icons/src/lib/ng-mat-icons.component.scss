@@ -22,4 +22,20 @@
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga';
+
+  &.size-sm {
+    font-size: 18px;
+  }
+
+  &.size-md {
+    font-size: 24px;
+  }
+
+  &.size-lg {
+    font-size: 36px;
+  }
+
+  &.size-xl {
+    font-size: 48px;
+  }
 }

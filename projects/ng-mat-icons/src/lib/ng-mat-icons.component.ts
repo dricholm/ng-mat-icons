@@ -6,7 +6,18 @@ import { icons } from './material-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nmi-icon',
   styleUrls: ['./ng-mat-icons.component.scss'],
-  template: `<i class="material-icons" [attr.aria-label]="label" [attr.aria-hidden]="!label">{{ content }}</i>`,
+  template: `
+    <i class="material-icons"
+       [attr.aria-label]="label"
+       [attr.aria-hidden]="!label"
+       [ngClass]="{
+        'size-sm': cssSize === 'sm',
+        'size-md': cssSize === 'md',
+        'size-lg': cssSize === 'lg',
+        'size-xl': cssSize === 'xl'
+       }"
+    >{{ content }}</i>
+  `,
 })
 export class NgMatIconsComponent {
   @Input()
@@ -29,5 +40,39 @@ export class NgMatIconsComponent {
   @Input()
   label: string;
 
+  @Input()
+  set size(size: string) {
+    if (!size) {
+      return;
+    }
+
+    switch (size) {
+      case '18':
+      case 'sm':
+        this.cssSize = 'sm';
+        break;
+
+      case '24':
+      case 'md':
+        this.cssSize = 'md';
+        break;
+
+      case '36':
+      case 'lg':
+        this.cssSize = 'lg';
+        break;
+
+      case '48':
+      case 'xl':
+        this.cssSize = 'xl';
+        break;
+
+      default:
+        console.warn(`Ng Material Icons: Invalid size given: ${size}`);
+        break;
+    }
+  }
+
   content: string;
+  cssSize: string;
 }
