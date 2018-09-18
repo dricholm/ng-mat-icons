@@ -10,7 +10,8 @@
     "e2e": "ng e2e",
     "build:lib": "ng build --prod ng-mat-icons",
     "pack": "cd dist/ng-mat-icons && npm pack",
-    "package": "npm run build:lib && npm run pack"
+    "package": "npm run build:lib && npm run pack",
+    "test:lib": "ng test ng-mat-icons"
   },
   "private": true,
   "dependencies": {
