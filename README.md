@@ -2,24 +2,72 @@
 
 A library for using Material Icons in Angular.
 
-## Development server
+## Links
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- [Documentation](https://dricholm.github.io/ng-mat-icons/)
+- [Icon list on Material Design](https://material.io/tools/icons/)
+- [Code point list](https://github.com/google/material-design-icons/blob/master/iconfont/codepoints)
 
-## Code scaffolding
+## Setup
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+> Note: Not yet published
 
-## Build
+1. Install in your project using npm:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+npm install ng-mat-icons
+```
+
+2. Import the `NgMatIconsModule` in your module. The recommended way is to include it in a `SharedModule`, which also exports it. Then import the `SharedModule` in other modules of your application. Check [here](https://angular.io/guide/sharing-ngmodules) for additional information.
+
+```typescript
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { NgMatIconsModule } from 'ng-mat-icons';
+
+@NgModule({
+  imports: [CommonModule, NgMatIconsModule],
+  exports: [NgMatIconsModule],
+})
+export class SharedModule {}
+```
+
+3. Now you can begin to use Material Icons in your components.
+
+```html
+<!-- Using icon name -->
+<nmi-icon name="face"></nmi-icon>
+
+<!-- Using code point -->
+<nmi-icon name="e87c"></nmi-icon>
+
+<!-- Adding aria-label -->
+<nmi-icon name="face" label="Person"></nmi-icon>
+
+<!-- Setting the size -->
+<nmi-icon name="home" size="sm"></nmi-icon>
+<nmi-icon name="home" size="md"></nmi-icon>
+<nmi-icon name="home" size="lg"></nmi-icon>
+<nmi-icon name="home" size="xl"></nmi-icon>
+<nmi-icon name="home" size="inherit"></nmi-icon>
+
+<!-- Color -->
+<nmi-icon name="menu" color="dark"></nmi-icon>
+<nmi-icon name="menu" color="dark" [inactive]="true"></nmi-icon>
+<nmi-icon name="menu" color="light"></nmi-icon>
+<nmi-icon name="menu" color="light" [inactive]="true"></nmi-icon>
+```
+
+> For the full list of icon names click [here](https://material.io/tools/icons/) and for a list of names and code points click [here](https://github.com/google/material-design-icons/blob/master/iconfont/codepoints). The full documentation can be found [here](https://dricholm.github.io/ng-mat-icons/).
+
+## Contribution
+
+### Build
+
+Run `ng build` to build the project.
 
 Run `ng build:lib` to build the library. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `npm run test:lib` to execute the unit tests for the library.
