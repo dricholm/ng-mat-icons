@@ -1,4 +1,9 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ChangeDetectionStrategy,
+  HostBinding,
+} from '@angular/core';
 
 import { icons } from './material-icons';
 
@@ -6,18 +11,7 @@ import { icons } from './material-icons';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nmi-icon',
   styleUrls: ['./ng-mat-icons.component.scss'],
-  template: `
-    <i class="material-icons"
-       [attr.aria-label]="label"
-       [attr.aria-hidden]="!label"
-       [ngClass]="{
-        'size-sm': cssSize === 'sm',
-        'size-md': cssSize === 'md',
-        'size-lg': cssSize === 'lg',
-        'size-xl': cssSize === 'xl'
-       }"
-    >{{ content }}</i>
-  `,
+  template: '{{ content }}',
 })
 export class NgMatIconsComponent {
   @Input()
@@ -43,36 +37,58 @@ export class NgMatIconsComponent {
   @Input()
   set size(size: string) {
     if (!size) {
+      this.cssSize = 'size-md';
       return;
     }
 
     switch (size) {
       case '18':
       case 'sm':
-        this.cssSize = 'sm';
+        this.cssSize = 'size-sm';
         break;
 
       case '24':
       case 'md':
-        this.cssSize = 'md';
+        this.cssSize = 'size-md';
         break;
 
       case '36':
       case 'lg':
-        this.cssSize = 'lg';
+        this.cssSize = 'size-lg';
         break;
 
       case '48':
       case 'xl':
-        this.cssSize = 'xl';
+        this.cssSize = 'size-xl';
+        break;
+
+      case 'inherit':
+        // Allow override
+        this.cssSize = '';
         break;
 
       default:
         console.warn(`Ng Material Icons: Invalid size given: ${size}`);
+        this.cssSize = 'size-md';
         break;
     }
   }
 
+  @HostBinding('attr.aria-label')
+  get ariaLabel(): string {
+    return this.label;
+  }
+
+  @HostBinding('attr.aria-hidden')
+  get ariaHidden(): string {
+    return this.label ? 'false' : 'true';
+  }
+
+  @HostBinding('class')
+  get classes(): Array<string> {
+    return [this.cssSize];
+  }
+
   content: string;
-  cssSize: string;
+  cssSize = 'size-md';
 }
