@@ -49,16 +49,15 @@ export class SharedModule {}
 <nmi-icon name="home" size="md"></nmi-icon>
 <nmi-icon name="home" size="lg"></nmi-icon>
 <nmi-icon name="home" size="xl"></nmi-icon>
-<nmi-icon name="home" size="inherit"></nmi-icon>
 
-<!-- Color -->
+<!-- Setting the color -->
 <nmi-icon name="menu" color="dark"></nmi-icon>
 <nmi-icon name="menu" color="dark" [inactive]="true"></nmi-icon>
 <nmi-icon name="menu" color="light"></nmi-icon>
 <nmi-icon name="menu" color="light" [inactive]="true"></nmi-icon>
 ```
 
-> For the full list of icon names click [here](https://material.io/tools/icons/) and for a list of names and code points click [here](https://github.com/google/material-design-icons/blob/master/iconfont/codepoints). The full documentation can be found [here](https://dricholm.github.io/ng-mat-icons/).
+> The full documentation can be found [here](https://dricholm.github.io/ng-mat-icons/). Additional information: [icons and names](https://material.io/tools/icons/) and [icon names with code points](https://github.com/google/material-design-icons/blob/master/iconfont/codepoints).
 
 ## Contribution
 

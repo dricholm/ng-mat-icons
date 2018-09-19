@@ -106,19 +106,19 @@ describe('NgMatIconsComponent', () => {
       expect(icon.attributes.getNamedItem('aria-hidden').value).toBe('false');
     });
 
-    it('should set size to default md when not given', () => {
+    it('should not set size by default', () => {
       component.name = 'face';
       fixture.detectChanges();
 
       const icon: HTMLElement = fixture.nativeElement;
       expect(icon.textContent).toBe('face');
       expect(icon.classList.contains('size-sm')).toBe(false);
-      expect(icon.classList.contains('size-md')).toBe(true);
+      expect(icon.classList.contains('size-md')).toBe(false);
       expect(icon.classList.contains('size-lg')).toBe(false);
       expect(icon.classList.contains('size-xl')).toBe(false);
     });
 
-    it('should size class from size input (sm)', () => {
+    it('should set size class from size input (sm)', () => {
       component.name = 'face';
       component.size = 'sm';
       fixture.detectChanges();
@@ -131,7 +131,7 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-xl')).toBe(false);
     });
 
-    it('should size class from size input (18)', () => {
+    it('should set size class from size input (18)', () => {
       component.name = 'face';
       component.size = '18';
       fixture.detectChanges();
@@ -144,7 +144,7 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-xl')).toBe(false);
     });
 
-    it('should size class from size input (md)', () => {
+    it('should set size class from size input (md)', () => {
       component.name = 'face';
       component.size = 'md';
       fixture.detectChanges();
@@ -157,7 +157,7 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-xl')).toBe(false);
     });
 
-    it('should size class from size input (24)', () => {
+    it('should set size class from size input (24)', () => {
       component.name = 'face';
       component.size = '24';
       fixture.detectChanges();
@@ -170,7 +170,7 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-xl')).toBe(false);
     });
 
-    it('should size class from size input (lg)', () => {
+    it('should set size class from size input (lg)', () => {
       component.name = 'face';
       component.size = 'lg';
       fixture.detectChanges();
@@ -183,7 +183,7 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-xl')).toBe(false);
     });
 
-    it('should size class from size input (36)', () => {
+    it('should set size class from size input (36)', () => {
       component.name = 'face';
       component.size = '36';
       fixture.detectChanges();
@@ -196,7 +196,7 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-xl')).toBe(false);
     });
 
-    it('should size class from size input (xl)', () => {
+    it('should set size class from size input (xl)', () => {
       component.name = 'face';
       component.size = 'xl';
       fixture.detectChanges();
@@ -209,7 +209,7 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-xl')).toBe(true);
     });
 
-    it('should size class from size input (48)', () => {
+    it('should set size class from size input (48)', () => {
       component.name = 'face';
       component.size = '48';
       fixture.detectChanges();
@@ -230,7 +230,7 @@ describe('NgMatIconsComponent', () => {
       const icon: HTMLElement = fixture.nativeElement;
       expect(icon.textContent).toBe('face');
       expect(icon.classList.contains('size-sm')).toBe(false);
-      expect(icon.classList.contains('size-md')).toBe(true);
+      expect(icon.classList.contains('size-md')).toBe(false);
       expect(icon.classList.contains('size-lg')).toBe(false);
       expect(icon.classList.contains('size-xl')).toBe(false);
       expect(console.warn).toHaveBeenCalledTimes(1);
@@ -238,19 +238,6 @@ describe('NgMatIconsComponent', () => {
         'Ng Material Icons: Invalid size: 30'
       );
       (console.warn as jasmine.Spy).calls.reset();
-    });
-
-    it('should not set font-size if set to inherit', () => {
-      component.name = 'face';
-      component.size = 'inherit';
-      fixture.detectChanges();
-
-      const icon: HTMLElement = fixture.nativeElement;
-      expect(icon.textContent).toBe('face');
-      expect(icon.classList.contains('size-sm')).toBe(false);
-      expect(icon.classList.contains('size-md')).toBe(false);
-      expect(icon.classList.contains('size-lg')).toBe(false);
-      expect(icon.classList.contains('size-xl')).toBe(false);
     });
 
     it('should set color to dark', () => {

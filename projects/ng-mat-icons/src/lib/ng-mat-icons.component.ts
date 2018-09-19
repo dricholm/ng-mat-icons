@@ -37,6 +37,7 @@ export class NgMatIconsComponent {
   @Input()
   set size(size: string) {
     if (!size) {
+      this.cssSize = '';
       return;
     }
 
@@ -61,14 +62,9 @@ export class NgMatIconsComponent {
         this.cssSize = 'size-xl';
         break;
 
-      case 'inherit':
-        // Allow override
-        this.cssSize = '';
-        break;
-
       default:
         console.warn(`Ng Material Icons: Invalid size: ${size}`);
-        this.cssSize = 'size-md';
+        this.cssSize = '';
         break;
     }
   }
@@ -159,7 +155,7 @@ export class NgMatIconsComponent {
   }
 
   content: string;
-  cssSize = 'size-md';
+  cssSize = '';
   cssColor = '';
   cssInactive = false;
 }
