@@ -12,7 +12,7 @@
     "publish:lib": "npm run build:lib && cd dist/ng-mat-icons && cp ../../README.md . && npm publish",
     "test:lib": "ng test ng-mat-icons",
     "deploy": "npm run build:lib && npm run deploy:build && npm run deploy:ngh",
-    "deploy:build": "ng build --prod --base-href=https://dricholm.github.io/ng-material-icons/",
+    "deploy:build": "ng build --prod --base-href=https://dricholm.github.io/ng-mat-icons/",
     "deploy:ngh": "ngh --no-silent --dir=dist/ng-mat-icons-app"
   },
   "private": true,
