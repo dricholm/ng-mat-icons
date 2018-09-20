@@ -10,15 +10,13 @@ A library for using Material Icons in Angular.
 
 ## Setup
 
-> Note: Not yet published
-
 1. Install in your project using npm:
 
 ```bash
 npm install ng-mat-icons
 ```
 
-2. Import the `NgMatIconsModule` in your module. The recommended way is to include it in a `SharedModule`, which also exports it. Then import the `SharedModule` in other modules of your application. Check the full [documentation](https://angular.io/guide/sharing-ngmodules) for additional information.
+2. Import the `NgMatIconsModule` in your module. The recommended way is to include it in a `SharedModule`, which also exports it. Then import the `SharedModule` in other modules of your application. Check the full [documentation](https://dricholm.github.io/ng-mat-icons/) for additional information.
 
 ```typescript
 import { CommonModule } from '@angular/common';

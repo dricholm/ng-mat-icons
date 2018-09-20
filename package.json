@@ -1,6 +1,6 @@
 {
   "name": "ng-mat-icons-app",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,8 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:lib": "ng build --prod ng-mat-icons",
-    "pack": "cd dist/ng-mat-icons && npm pack",
-    "package": "npm run build:lib && npm run pack",
+    "publish:lib": "npm run build:lib && cd dist/ng-mat-icons && cp ../../README.md . && npm publish",
     "test:lib": "ng test ng-mat-icons",
     "deploy": "npm run build:lib && npm run deploy:build && npm run deploy:ngh",
     "deploy:build": "ng build --prod --base-href=https://dricholm.github.io/ng-material-icons/",
