@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono');
+
+@import '~src/styles/normalize';
+@import '~src/styles/variables';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $light;
+  color: $font-color;
+  font-family: Roboto, sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  margin: 0;
+}
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    color: $link-color-hover;
+    text-decoration: underline;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  line-height: $headings-line-height;
+  margin-top: 0;
+  margin-bottom: $headings-margin-bottom;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: $paragraph-margin-bottom;
+  text-align: justify;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 map-get($spacers, 4);
+
+  @media (min-width: 576px) {
+    max-width: 540px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media (min-width: 920px) {
+    max-width: 960px;
+  }
+}
+
+pre {
+  margin: 0;
+  overflow: auto;
+  padding: map-get($spacers, 3);
+}
+
+code {
+  background-color: $white;
+  color: $code-color;
+  font-family: 'Roboto Mono', monospace;
+  font-size: $code-font-size;
+}
+
+li {
+  margin-bottom: $list-item-margin-bottom;
+}
+
+.text-lg {
+  font-size: $font-size-lg;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.overflow-auto {
+  text-overflow: auto;
+}
+
+.shadow {
+  box-shadow: $shadow;
+}
+
+@each $color, $value in $colors {
+  .bg-#{$color} {
+    background-color: $value;
+  }
+
+  .text-#{$color} {
+    color: $value;
+  }
+}
+
+@each $property, $abbreviation in (margin: m, padding: p) {
+  @each $index, $value in $spacers {
+    .#{$abbreviation}-#{$index} {
+      #{$property}: $value;
+    }
+
+    .#{$abbreviation}t-#{$index},
+    .#{$abbreviation}y-#{$index} {
+      #{$property}-top: $value;
+    }
+
+    .#{$abbreviation}r-#{$index},
+    .#{$abbreviation}x-#{$index} {
+      #{$property}-right: $value;
+    }
+
+    .#{$abbreviation}b-#{$index},
+    .#{$abbreviation}y-#{$index} {
+      #{$property}-bottom: $value;
+    }
+
+    .#{$abbreviation}l-#{$index},
+    .#{$abbreviation}x-#{$index} {
+      #{$property}-left: $value;
+    }
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}

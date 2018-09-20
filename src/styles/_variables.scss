@@ -1,0 +1,47 @@
+$primary: #3f51b5;
+$secondary: #dd2c00;
+$dark: #263238;
+$light: #f5f5f6;
+$black: #000000;
+$white: #ffffff;
+$gray: #e1e2e1;
+
+$colors: (
+  'primary': $primary,
+  'secondary': $secondary,
+  'dark': $dark,
+  'light': $light,
+  'black': $black,
+  'white': $white,
+  'gray': $gray,
+);
+
+$font-size: 20px;
+$font-size-lg: $font-size * 1.25;
+$code-font-size: 18px;
+
+$font-weight: 400;
+
+$line-height: 1.5;
+$headings-line-height: 1.2;
+
+$font-color: rgba(0, 0, 0, 0.75);
+$code-color: $secondary;
+$link-color: $primary;
+$link-color-hover: darken($primary, 10%);
+
+$spacer: 1rem;
+
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);
+
+$headings-margin-bottom: map-get($spacers, 2);
+$paragraph-margin-bottom: map-get($spacers, 3);
+$list-item-margin-bottom: map-get($spacers, 1);
+$shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

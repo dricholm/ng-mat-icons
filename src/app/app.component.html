@@ -1,1 +1,231 @@
-<h1>Ng Material Icons</h1>
+<main class="container py-5">
+  <h1 class="my-5 text-primary">Ng Material Icons</h1>
+
+  <p>
+    A library for using Material Icons inside your Angular project.
+  </p>
+
+  <h2 class="mt-5">Setup</h2>
+
+  <ol>
+    <li class="text-justify">
+      Install the library in your Angular project using npm:
+      <code>npm install ng-mat-icons</code>
+    </li>
+
+    <li class="text-justify">
+      Import the <code>NgMatIconsModule</code> in your module.
+      The recommended way is to include it in a <code>SharedModule</code>,
+      which also exports it. Then import the <code>SharedModule</code> in other modules of your application.
+    </li>
+
+    <pre class="shadow bg-white my-3 p-3"><code>{{ setupSnippets[0] }}</code></pre>
+
+    <li class="text-justify">
+      Now you can begin to use Material Icons in your components.
+    </li>
+
+    <pre class="shadow bg-white my-3 p-3"><code>{{ setupSnippets[1] }}</code></pre>
+  </ol>
+
+  <h2 class="mt-5">Usage</h2>
+
+  <p>
+    The library contains one component called <code>NgMatIcons</code>.
+    This can be used with the <code>&lt;nmi-icon&gt;</code> HTML tag.
+    You can specify several attributes to customize the icon.
+    By default the icon will inherit the size and color from the parent element.
+  </p>
+
+  <h3 class="mt-5">Basic usage</h3>
+
+  <p>
+    The content between the HTML tags defines which icon to display.
+    It can be given using the icon name or the code point.
+    You can find the full list of icons on the <a href="https://material.io/tools/icons/">Material Design</a> website,
+    while the list of code points can be found in the
+    <a href="https://github.com/google/material-design-icons/blob/master/iconfont/codepoints">material-design-icons</a>
+    GitHub repo.
+  </p>
+
+  <h4>Using icon names</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3 text-lg">
+      <nmi-icon>face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ iconSnippet[0] }}</code>
+    </pre>
+  </div>
+
+  <h4>Using code points</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3 text-lg">
+      <nmi-icon>&#xe87c;</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ iconSnippet[1] }}</code>
+    </pre>
+  </div>
+
+  <h3 class="mt-5">Accessibility and label</h3>
+
+  <p>
+    By default the icon will be hidden for screen readers by using the <code>aria-hidden="true"</code> attribute.
+    Using the <code>label</code> attribute you can specify what gets displayed for screen readers by the <code>aria-label</code>
+    attribute. Setting this attribute will set <code>aria-hidden</code> to false.
+  </p>
+
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3 text-lg">
+      <nmi-icon label="Person">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ labelSnippet[0] }}</code>
+    </pre>
+  </div>
+
+  <h3 class="mt-5">Size</h3>
+
+  <p>
+    The icon will inherit the font size from the parent element.
+    You can specify the <code>size</code> attribute to use the recommended sizes specified in the
+    <a href="https://google.github.io/material-design-icons/">Material Icons Guide</a>.
+  </p>
+  <p>
+    The size can be given in pixels (<code>18</code>, <code>24</code>, <code>36</code> or <code>48</code>) or using
+    <code>sm</code>, <code>md</code>, <code>lg</code> or <code>xl</code>.
+  </p>
+
+  <h4>Small (18px)</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3">
+      <nmi-icon size="sm">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ sizeSnippet[0] }}</code>
+    </pre>
+  </div>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3">
+      <nmi-icon size="18">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ sizeSnippet[1] }}</code>
+    </pre>
+  </div>
+
+  <h4>Medium (24px)</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3">
+      <nmi-icon size="md">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ sizeSnippet[2] }}</code>
+    </pre>
+  </div>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3">
+      <nmi-icon size="24">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ sizeSnippet[3] }}</code>
+    </pre>
+  </div>
+
+  <h4>Large (36px)</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3">
+      <nmi-icon size="lg">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ sizeSnippet[4] }}</code>
+    </pre>
+  </div>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3">
+      <nmi-icon size="36">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ sizeSnippet[5] }}</code>
+    </pre>
+  </div>
+
+  <h4>Extra large (48px)</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3">
+      <nmi-icon size="xl">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ sizeSnippet[6] }}</code>
+    </pre>
+  </div>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3">
+      <nmi-icon size="48">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ sizeSnippet[7] }}</code>
+    </pre>
+  </div>
+
+  <h3 class="mt-5">Color</h3>
+
+  <p>
+    The icon inherits the color from the parent element by default.
+    This can be overriden to use the colors specified in the
+    <a href="https://google.github.io/material-design-icons/">Material Icons Guide</a> by the <code>color</code>
+    attribute.
+    If the <code>color</code> is set to <code>light</code> or <code>dark</code> then the <code>inactive</code> property
+    can also be set to <code>true</code>.
+    The <code>inactive</code> attribute only works if the <code>color</code> attribute is set.
+  </p>
+
+  <h4>Dark</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3 text-lg">
+      <nmi-icon color="dark">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ colorSnippet[0] }}</code>
+    </pre>
+  </div>
+
+  <h4>Dark and inactive</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-light d-flex p-3 text-lg">
+      <nmi-icon color="dark" [inactive]="true">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ colorSnippet[1] }}</code>
+    </pre>
+  </div>
+
+  <h4>Light</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-dark d-flex p-3 text-lg">
+      <nmi-icon color="light">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ colorSnippet[2] }}</code>
+    </pre>
+  </div>
+
+  <h4>Light and inactive</h4>
+  <div class="d-flex my-3 shadow">
+    <div class="align-items-center bg-dark d-flex p-3 text-lg">
+      <nmi-icon color="light" [inactive]="true">face</nmi-icon>
+    </div>
+    <pre class="align-items-center bg-white d-flex flex-grow p-3">
+      <code>{{ colorSnippet[3] }}</code>
+    </pre>
+  </div>
+
+  <h2 class="mt-5">Contributing</h2>
+
+  <p class="mb-5">
+    This project can be found on <a href="https://github.com/dricholm/ng-material-icons">GitHub</a>.
+    Contributions are welcome!
+  </p>
+
+</main>
