@@ -18,7 +18,7 @@ A library for using Material Icons in Angular.
 npm install ng-mat-icons
 ```
 
-2. Import the `NgMatIconsModule` in your module. The recommended way is to include it in a `SharedModule`, which also exports it. Then import the `SharedModule` in other modules of your application. Check [here](https://angular.io/guide/sharing-ngmodules) for additional information.
+2. Import the `NgMatIconsModule` in your module. The recommended way is to include it in a `SharedModule`, which also exports it. Then import the `SharedModule` in other modules of your application. Check the full [documentation](https://angular.io/guide/sharing-ngmodules) for additional information.
 
 ```typescript
 import { CommonModule } from '@angular/common';
@@ -36,28 +36,28 @@ export class SharedModule {}
 
 ```html
 <!-- Using icon name -->
-<nmi-icon name="face"></nmi-icon>
+<nmi-icon>face</nmi-icon>
 
 <!-- Using code point -->
-<nmi-icon name="e87c"></nmi-icon>
+<nmi-icon>&#xe87c;</nmi-icon>
 
 <!-- Adding aria-label -->
-<nmi-icon name="face" label="Person"></nmi-icon>
+<nmi-icon label="Person">face</nmi-icon>
 
 <!-- Setting the size -->
-<nmi-icon name="home" size="sm"></nmi-icon>
-<nmi-icon name="home" size="md"></nmi-icon>
-<nmi-icon name="home" size="lg"></nmi-icon>
-<nmi-icon name="home" size="xl"></nmi-icon>
+<nmi-icon size="sm">home</nmi-icon>
+<nmi-icon size="md">home</nmi-icon>
+<nmi-icon size="lg">home</nmi-icon>
+<nmi-icon size="xl">home</nmi-icon>
 
 <!-- Setting the color -->
-<nmi-icon name="menu" color="dark"></nmi-icon>
-<nmi-icon name="menu" color="dark" [inactive]="true"></nmi-icon>
-<nmi-icon name="menu" color="light"></nmi-icon>
-<nmi-icon name="menu" color="light" [inactive]="true"></nmi-icon>
+<nmi-icon color="dark">menu</nmi-icon>
+<nmi-icon color="dark" [inactive]="true">menu</nmi-icon>
+<nmi-icon color="light">menu</nmi-icon>
+<nmi-icon color="light" [inactive]="true">menu</nmi-icon>
 ```
 
-> The full documentation can be found [here](https://dricholm.github.io/ng-mat-icons/). Additional information: [icons and names](https://material.io/tools/icons/) and [icon names with code points](https://github.com/google/material-design-icons/blob/master/iconfont/codepoints).
+> Check the full [documentation](https://dricholm.github.io/ng-mat-icons/) for details. Additional information on [icons and names](https://material.io/tools/icons/) and [icon names with code points](https://github.com/google/material-design-icons/blob/master/iconfont/codepoints).
 
 ## Contribution
 

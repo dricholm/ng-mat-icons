@@ -3,41 +3,23 @@ import {
   Input,
   ChangeDetectionStrategy,
   HostBinding,
+  Inject,
 } from '@angular/core';
-
-import { icons } from './material-icons';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'nmi-icon',
   styleUrls: ['./ng-mat-icons.component.scss'],
-  template: '{{ content }}',
+  template: '<ng-content></ng-content>',
 })
 export class NgMatIconsComponent {
-  @Input()
-  set name(name: string) {
-    if (icons[name.toLowerCase()]) {
-      this.content = name.toLowerCase();
-      return;
-    }
-
-    // Try with Numeric Character Reference or code point
-    const match = name.match(/^(?:&#x)?(e[0-9a-f]{3});?$/i);
-    if (!!match && !!match[1]) {
-      this.content = `&#x${match[1]};`.toLowerCase();
-      return;
-    }
-
-    console.warn(`Ng Material Icons: Invalid name: ${name}`);
-  }
-
   @Input()
   label: string;
 
   @Input()
   set size(size: string) {
     if (!size) {
-      this.cssSize = '';
+      this.cssSize = undefined;
       return;
     }
 
@@ -64,7 +46,7 @@ export class NgMatIconsComponent {
 
       default:
         console.warn(`Ng Material Icons: Invalid size: ${size}`);
-        this.cssSize = '';
+        this.cssSize = undefined;
         break;
     }
   }
@@ -72,6 +54,7 @@ export class NgMatIconsComponent {
   @Input()
   set color(color: string) {
     if (!color) {
+      this.cssColor = undefined;
       return;
     }
 
@@ -86,6 +69,7 @@ export class NgMatIconsComponent {
 
       default:
         console.warn(`Ng Material Icons: Invalid color: ${color}`);
+        this.cssColor = undefined;
         break;
     }
   }
@@ -93,6 +77,7 @@ export class NgMatIconsComponent {
   @Input()
   set inactive(inactive: boolean) {
     if (inactive == null) {
+      this.cssInactive = undefined;
       return;
     }
 
@@ -104,7 +89,7 @@ export class NgMatIconsComponent {
 
       default:
         console.warn('Ng Material Icons: Color must be set for inactive');
-        this.cssInactive = false;
+        this.cssInactive = undefined;
         break;
     }
   }
@@ -154,8 +139,7 @@ export class NgMatIconsComponent {
     return this.cssInactive;
   }
 
-  content: string;
-  cssSize = '';
-  cssColor = '';
-  cssInactive = false;
+  cssSize: string;
+  cssColor: string;
+  cssInactive: boolean;
 }
