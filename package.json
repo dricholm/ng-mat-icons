@@ -13,7 +13,9 @@
     "test:lib": "ng test ng-mat-icons",
     "deploy": "npm run build:lib && npm run deploy:build && npm run deploy:ngh",
     "deploy:build": "ng build --prod --base-href=https://dricholm.github.io/ng-mat-icons/",
-    "deploy:ngh": "ngh --no-silent --dir=dist/ng-mat-icons-app"
+    "deploy:ngh": "ngh --no-silent --dir=dist/ng-mat-icons-app",
+    "ci-test:app": "ng test ng-mat-icons-app --watch=false --progress=false --browsers=ChromeHeadlessCI",
+    "ci-test:lib": "ng test ng-mat-icons --watch=false --progress=false --browsers=ChromeHeadlessCI"
   },
   "private": true,
   "dependencies": {

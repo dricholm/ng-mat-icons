@@ -1,0 +1,31 @@
+dist: trusty
+
+language: node_js
+node_js:
+  - 'node'
+
+branches:
+  only:
+    - master
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+script:
+  - npm run lint
+  - npm run ci-test:lib
+  - npm run ci-test:app
+  - npm run build:lib
+  - npm run deploy:build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/ng-mat-icons-app
+  on:
+    branch: master
