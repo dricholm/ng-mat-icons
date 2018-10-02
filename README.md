@@ -1,5 +1,8 @@
 # Ng Material Icons
 
+[![Build Status](https://travis-ci.com/dricholm/ng-mat-icons.svg?branch=master)](https://travis-ci.com/dricholm/ng-mat-icons)
+[![npm version](https://badge.fury.io/js/ng-mat-icons.svg)](https://badge.fury.io/js/ng-mat-icons)
+
 A library for using Material Icons in Angular.
 
 ## Links

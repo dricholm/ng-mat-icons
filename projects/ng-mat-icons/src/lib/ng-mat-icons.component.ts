@@ -3,7 +3,6 @@ import {
   Input,
   ChangeDetectionStrategy,
   HostBinding,
-  Inject,
 } from '@angular/core';
 
 @Component({
