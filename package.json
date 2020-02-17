@@ -1,6 +1,6 @@
 {
   "name": "ng-mat-icons-app",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +10,7 @@
     "test:ci": "jest --runInBand",
     "lint": "ng lint",
     "build:lib": "ng build --prod ng-mat-icons",
-    "publish:lib": "npm run build:lib && cd dist/ng-mat-icons && cp ../../README.md . && npm publish"
+    "publish": "npm run build:lib && cd dist/ng-mat-icons && cp ../../README.md . && npm publish"
   },
   "private": true,
   "dependencies": {
