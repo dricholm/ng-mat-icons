@@ -4,16 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod --base-href=https://dricholm.github.io/ng-mat-icons/",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "test:ci": "jest --runInBand",
     "lint": "ng lint",
     "build:lib": "ng build --prod ng-mat-icons",
-    "publish:lib": "npm run build:lib && cd dist/ng-mat-icons && cp ../../README.md . && npm publish",
-    "deploy": "npm run build:lib && npm run deploy:build && npm run deploy:ngh",
-    "deploy:build": "ng build --prod --base-href=https://dricholm.github.io/ng-mat-icons/",
-    "deploy:ngh": "ngh --no-silent --dir=dist/ng-mat-icons-app"
+    "publish:lib": "npm run build:lib && cd dist/ng-mat-icons && cp ../../README.md . && npm publish"
   },
   "private": true,
   "dependencies": {
@@ -38,7 +35,6 @@
     "@angular/language-service": "^9.0.1",
     "@types/jest": "^25.1.2",
     "@types/node": "^12.11.1",
-    "angular-cli-ghpages": "^0.6.2",
     "codelyzer": "^5.1.2",
     "jest": "^25.1.0",
     "jest-preset-angular": "^8.0.0",
