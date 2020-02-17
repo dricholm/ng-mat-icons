@@ -1,10 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component } from '@angular/core';
-
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgMatIconsComponent } from './ng-mat-icons.component';
 
 @Component({
-  template: `<nmi-icon [size]="size" [color]="color" [inactive]="inactive">{{ icon }}</nmi-icon>`,
+  template: `
+    <nmi-icon [size]="size" [color]="color" [inactive]="inactive">{{
+      icon
+    }}</nmi-icon>
+  `,
 })
 export class TestHostComponent {
   icon: string;
@@ -14,24 +17,32 @@ export class TestHostComponent {
 }
 
 describe('NgMatIconsComponent', () => {
+  let consoleSpy: jest.SpyInstance;
+
   beforeEach(async(() => {
+    consoleSpy = jest
+      .spyOn(global.console, 'warn')
+      .mockImplementation(() => {});
     TestBed.configureTestingModule({
       declarations: [NgMatIconsComponent, TestHostComponent],
     }).compileComponents();
   }));
+
+  afterEach(() => {
+    consoleSpy.mockRestore();
+  });
 
   describe('standalone', () => {
     let component: NgMatIconsComponent;
     let fixture: ComponentFixture<NgMatIconsComponent>;
 
     beforeEach(() => {
-      spyOn(console, 'warn').and.callFake(() => {});
       fixture = TestBed.createComponent(NgMatIconsComponent);
       component = fixture.componentInstance;
     });
 
     afterEach(() => {
-      expect(console.warn).toHaveBeenCalledTimes(0);
+      expect(consoleSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should create', () => {
@@ -162,11 +173,11 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('size-md')).toBe(false);
       expect(icon.classList.contains('size-lg')).toBe(false);
       expect(icon.classList.contains('size-xl')).toBe(false);
-      expect(console.warn).toHaveBeenCalledTimes(1);
-      expect(console.warn).toHaveBeenCalledWith(
+      expect(consoleSpy).toHaveBeenCalledTimes(1);
+      expect(consoleSpy).toHaveBeenCalledWith(
         'Ng Material Icons: Invalid size: 30'
       );
-      (console.warn as jasmine.Spy).calls.reset();
+      consoleSpy.mockClear();
     });
 
     it('should set color to dark', () => {
@@ -219,11 +230,11 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('dark')).toBe(false);
       expect(icon.classList.contains('light')).toBe(false);
       expect(icon.classList.contains('inactive')).toBe(false);
-      expect(console.warn).toHaveBeenCalledTimes(1);
-      expect(console.warn).toHaveBeenCalledWith(
+      expect(consoleSpy).toHaveBeenCalledTimes(1);
+      expect(consoleSpy).toHaveBeenCalledWith(
         'Ng Material Icons: Invalid color: blue'
       );
-      (console.warn as jasmine.Spy).calls.reset();
+      consoleSpy.mockClear();
     });
 
     it('should warn if inactive is set without color', () => {
@@ -234,11 +245,11 @@ describe('NgMatIconsComponent', () => {
       expect(icon.classList.contains('dark')).toBe(false);
       expect(icon.classList.contains('light')).toBe(false);
       expect(icon.classList.contains('inactive')).toBe(false);
-      expect(console.warn).toHaveBeenCalledTimes(1);
-      expect(console.warn).toHaveBeenCalledWith(
+      expect(consoleSpy).toHaveBeenCalledTimes(1);
+      expect(consoleSpy).toHaveBeenCalledWith(
         'Ng Material Icons: Color must be set for inactive'
       );
-      (console.warn as jasmine.Spy).calls.reset();
+      consoleSpy.mockClear();
     });
   });
 
@@ -249,13 +260,12 @@ describe('NgMatIconsComponent', () => {
     let fixture: ComponentFixture<TestHostComponent>;
 
     beforeEach(() => {
-      spyOn(console, 'warn');
       fixture = TestBed.createComponent(TestHostComponent);
       component = fixture.componentInstance;
     });
 
     afterEach(() => {
-      expect(console.warn).toHaveBeenCalledTimes(0);
+      expect(consoleSpy).toHaveBeenCalledTimes(0);
     });
 
     it('should update icon content', () => {
